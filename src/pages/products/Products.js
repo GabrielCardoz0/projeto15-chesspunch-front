@@ -1,6 +1,6 @@
 import Header from "../../components/header";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect } from "react";
 
@@ -8,24 +8,26 @@ export default function Products() {
 
     const {productId} = useParams()
 
-    useEffect(()=>{
-        console.log(productId);
-        const URL = "http://localhost:5000/product"
-        axios.get(URL,{productId}).then(res=>console.log(res.data))
-    },[])
-
     const [productQtd, setProductQtd] = React.useState(0)
 
+    const [productFind, setProductFind] = React.useState({})
+
+    const navigate = useNavigate()
 
 
+
+    useEffect(()=>{
+        const URL = `http://localhost:5000/productsfind/${productId}`
+        axios.get(URL,{productId}).then(res=>setProductFind(res.data))
+    },[])
 
     return(
         <>
         <Header/>
         <Background>
-            <img src="https://http2.mlstatic.com/D_NQ_NP_711435-MLB32227131350_092019-O.jpg" alt=""/>
-            <h1>Nome do produto</h1>
-            <p>Descrição</p>
+            <img src={productFind.image} alt=""/>
+            <h1>{productFind.name}</h1>
+            <p>{productFind.description}</p>
             <ProductButtons>
                 <div>
                     Quantidade:
@@ -35,7 +37,7 @@ export default function Products() {
                 </div>
                 <button>adicionar ao carrinho</button>
                 <button>Comprar</button>
-                <button>Voltar</button>
+                <button onClick={() => navigate("/") }>Voltar</button>
             </ProductButtons>
 
         </Background>
@@ -70,7 +72,7 @@ const Background = styled.div`
     }
     `;
 
-    const ProductButtons = styled.div`
+const ProductButtons = styled.div`
         display:flex;
         flex-direction:column;
         div{

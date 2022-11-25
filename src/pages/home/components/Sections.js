@@ -3,10 +3,13 @@ import GlobalStyle from "../../../assets/css/globalstyle";
 import axios from "axios";
 import { useEffect } from "react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Sections() {
 
         const [productsList, setProductsLists] = React.useState([]);
+
+        const navigate = useNavigate()
 
         useEffect(()=>{
             const url = "http://localhost:5000/products"
@@ -14,10 +17,11 @@ export default function Sections() {
         },[]);
 
 
+
         function liItem(obj){
             return(
                 <li key={obj.price}>
-                    <img src={obj.image} alt=""/>
+                    <img src={obj.image} alt="" onClick={()=> navigate(`/product/${obj.name}`)}/>
                     <h2> {obj.name} </h2>
                     <p>R${obj.price}</p>
                 </li>
