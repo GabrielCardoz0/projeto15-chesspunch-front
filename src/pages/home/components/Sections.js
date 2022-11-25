@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { URL } from "../../../constants/URLS.js";
 
 export default function Sections() {
 
@@ -12,8 +13,7 @@ export default function Sections() {
         const navigate = useNavigate()
 
         useEffect(()=>{
-            const url = "http://localhost:5000/products"
-            axios.get(url).then(res => setProductsLists(res.data))
+            axios.get(`${URL}/products`).then(res => setProductsLists(res.data))
         },[]);
 
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect } from "react";
+import { URL } from "../../constants/URLS.js";
 
 export default function Products() {
 
@@ -17,9 +18,11 @@ export default function Products() {
 
 
     useEffect(()=>{
-        const URL = `http://localhost:5000/productsfind/${productId}`
-        axios.get(URL,{productId}).then(res=>setProductFind(res.data))
-    },[])
+
+        axios.get(`${URL}/productsfind/${productId}`).then(res=>setProductFind(res.data))
+
+    },[productId])
+    
 
     return(
         <>
