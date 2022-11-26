@@ -11,7 +11,7 @@ export default function Header() {
 
             <div>Ola, user</div>
 
-            <img src={cartImg} alt=""/>
+            <Link to="/cart"> <img src={cartImg} alt=""/></Link>
         </Logo>
     )
 };

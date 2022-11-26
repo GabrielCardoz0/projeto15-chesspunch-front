@@ -3,23 +3,40 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import { DEFAULTCOLOR } from "../../../constants/colors.js";
 
-export default function ProductsButtons() {
+export default function ProductsButtons(params) {
+
+    const item = params.productInfo;
 
     const navigate = useNavigate();
     const [productQtd, setProductQtd] = React.useState(1);
+
+    function addCart(route){
+        const newItem = {
+            ...item,
+            amount:productQtd
+        }
+        delete newItem.description
+
+        const itensAdicionados = JSON.parse(localStorage.getItem("itensList"))
+
+        localStorage.setItem("itensList",JSON.stringify([...itensAdicionados, newItem]))
+
+        alert("Item adiocionado ao carrinho.")
+        navigate(route)
+    }
+
 
     return(
         <ProductButtons>
             <div className="button">
                 quantidade:
-                {/* <input type="number" min={1} value={productQtd} onChange={e=> setProductQtd(e.target.value)}/> */}
                 <span>
-                    <span onClick={()=> productQtd <= 0? "" : setProductQtd(productQtd-1)}>- </span> {productQtd}<span onClick={()=> setProductQtd(productQtd+1)}> +</span>
+                    <span onClick={()=> productQtd <= 1? "" : setProductQtd(productQtd-1)}>- </span> {productQtd}<span onClick={()=> setProductQtd(productQtd+1)}> +</span>
                 </span>
             </div>
 
-            <button className="addCart">adicionar ao carrinho</button>
-            <button className="buy">Comprar</button>
+            <button className="addCart" onClick={()=> addCart("/")}>adicionar ao carrinho</button>
+            <button className="buy" onClick={()=> addCart("/cart")}>Comprar</button>
             <button className="cancel" onClick={() => navigate("/") }>Voltar</button>
         </ProductButtons>
     )
@@ -29,7 +46,7 @@ const ProductButtons = styled.div`
         display:flex;
         flex-direction:column;
         .button{
-            width:130px;
+            width:150px;
             height:40px;
             margin: 0 auto;
             background-color:#fff;
