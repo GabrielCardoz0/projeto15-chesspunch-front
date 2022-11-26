@@ -15,7 +15,7 @@ export default function Products() {
 
         axios.get(`${URL}/productsfind/${productId}`).then(res=>setProductFind(res.data))
 
-    },[])
+    },[productId])
 
 
     return(
@@ -26,7 +26,7 @@ export default function Products() {
             <h1>{productFind.name}</h1>
             <p>{productFind.description}</p>
             <p>Preço: R${productFind.price}</p>
-            <ProductsButtons/>
+            <ProductsButtons productInfo = {productFind}/>
         </Background>
         </>
     )
