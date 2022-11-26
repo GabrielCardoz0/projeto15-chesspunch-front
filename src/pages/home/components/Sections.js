@@ -16,12 +16,10 @@ export default function Sections() {
             axios.get(`${URL}/products`).then(res => setProductsLists(res.data))
         },[]);
 
-
-
         function liItem(obj){
             return(
-                <li key={obj.price}>
-                    <img src={obj.image} alt="" onClick={()=> navigate(`/product/${obj.name}`)}/>
+                <li key={obj._id}>
+                    <img src={obj.image} alt="" onClick={()=> navigate(`/product/${obj._id}`)}/>
                     <h2> {obj.name} </h2>
                     <p>R${obj.price}</p>
                 </li>

@@ -1,28 +1,22 @@
 import Header from "../../components/header";
 import styled from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect } from "react";
 import { URL } from "../../constants/URLS.js";
+import ProductsButtons from "./components/productsButtons";
 
 export default function Products() {
 
-    const {productId} = useParams()
-
-    const [productQtd, setProductQtd] = React.useState(0)
-
-    const [productFind, setProductFind] = React.useState({})
-
-    const navigate = useNavigate()
-
-
+    const {productId} = useParams();
+    const [productFind, setProductFind] = React.useState({});
 
     useEffect(()=>{
 
         axios.get(`${URL}/productsfind/${productId}`).then(res=>setProductFind(res.data))
 
-    },[productId])
-    
+    },[])
+
 
     return(
         <>
@@ -31,18 +25,8 @@ export default function Products() {
             <img src={productFind.image} alt=""/>
             <h1>{productFind.name}</h1>
             <p>{productFind.description}</p>
-            <ProductButtons>
-                <div>
-                    Quantidade:
-                    <div>
-                    <span onClick={()=> setProductQtd(productQtd+1)}>+</span> {productQtd} <span onClick={()=> setProductQtd(productQtd-1)}>-</span>
-                    </div>
-                </div>
-                <button>adicionar ao carrinho</button>
-                <button>Comprar</button>
-                <button onClick={() => navigate("/") }>Voltar</button>
-            </ProductButtons>
-
+            <p>Preço: R${productFind.price}</p>
+            <ProductsButtons/>
         </Background>
         </>
     )
@@ -61,6 +45,7 @@ const Background = styled.div`
         width:200px;
         height:200px;
         margin-bottom:15px;
+        box-shadow:0 0 5px 0 #c6c6c6;
     }
     h1{
         font-size:20px;
@@ -73,22 +58,4 @@ const Background = styled.div`
         font-weight:400;
         margin-bottom:15px;
     }
-    `;
-
-const ProductButtons = styled.div`
-        display:flex;
-        flex-direction:column;
-        div{
-            margin: 0 auto;
-            background-color:#fff;
-
-            div{
-                display:flex;
-                justify-content:space-around;
-                align-items:center;
-            }
-        }
-        span{
-            font-size:30px;
-        }
     `;

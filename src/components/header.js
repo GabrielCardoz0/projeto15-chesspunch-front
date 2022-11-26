@@ -1,14 +1,17 @@
 import styled from "styled-components";
 import { DEFAULTCOLOR } from "../constants/colors";
+import cartImg from "../assets/images/shopping-cart-1768065.png"
+import chess from "../assets/images/chess.png"
+import { Link } from "react-router-dom";
 
 export default function Header() {
     return(
         <Logo>
-            <img src="" alt=""/>
+            <Link to="/"><img src={chess} alt=""/></Link>
 
             <div>Ola, user</div>
 
-            <img src="" alt=""/>
+            <img src={cartImg} alt=""/>
         </Logo>
     )
 };
