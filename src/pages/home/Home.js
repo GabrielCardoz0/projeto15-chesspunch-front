@@ -1,9 +1,15 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import Header from "../../components/header";
 import Sections from "./components/Sections";
 
 
 export default function Home() {
+
+    useEffect((
+        localStorage.setItem(JSON.stringify([]))
+    ),[])
+
     return(
         <>
 
