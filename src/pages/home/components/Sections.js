@@ -3,21 +3,23 @@ import GlobalStyle from "../../../assets/css/globalstyle";
 import axios from "axios";
 import { useEffect } from "react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { URL } from "../../../constants/URLS.js";
 
 export default function Sections() {
 
         const [productsList, setProductsLists] = React.useState([]);
 
-        useEffect(()=>{
-            const url = "http://localhost:5000/products"
-            axios.get(url).then(res => setProductsLists(res.data))
-        },[]);
+        const navigate = useNavigate()
 
+        useEffect(()=>{
+            axios.get(`${URL}/products`).then(res => setProductsLists(res.data))
+        },[]);
 
         function liItem(obj){
             return(
-                <li key={obj.price}>
-                    <img src={obj.image} alt=""/>
+                <li key={obj._id}>
+                    <img src={obj.image} alt="" onClick={()=> navigate(`/product/${obj._id}`)}/>
                     <h2> {obj.name} </h2>
                     <p>R${obj.price}</p>
                 </li>
