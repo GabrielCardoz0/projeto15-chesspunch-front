@@ -5,8 +5,8 @@ import Sections from "./components/Sections";
 
 
 export default function Home() {
-    useEffect((()=> localStorage.setItem(JSON.stringify([]))),[])
-    
+    useEffect((()=> localStorage.setItem("itensList",JSON.stringify([]))),[])
+
     return(
         <>
 
