@@ -13,7 +13,7 @@ export default function SingInForm() {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const body ={
+        const body = {
             email,
             password
         }
@@ -48,9 +48,11 @@ export default function SingInForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
-
-            <button type="onSubmit">Entrar</button>
-            <Link to="/">Voltar</Link>
+                <button type="onSubmit">Entrar</button>
+            <div>
+                <Link to="sing-up">Cadastre-se aqui</Link>
+                <Link to="/">Voltar</Link>
+            </div>
         </StyleFormAuth>
     )
 }
