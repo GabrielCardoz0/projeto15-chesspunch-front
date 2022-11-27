@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import Header from "../../components/header";
 import Sections from "./components/Sections";
