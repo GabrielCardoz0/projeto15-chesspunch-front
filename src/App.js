@@ -3,6 +3,7 @@ import GlobalStyle from "./assets/css/globalstyle";
 import Cart from "./pages/cart/Cart.js";
 import Home from "./pages/home/Home";
 import Products from "./pages/products/Products";
+import SingIn from "./pages/SignIn/SingIn";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/product/:productId" element={<Products/>}/>
           <Route path="/cart" element={<Cart/>}/>
+          <Route path="/sing-in" element={<SingIn/>} />
         </Routes>
       </BrowserRouter>
     </>
