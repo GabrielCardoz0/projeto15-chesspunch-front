@@ -5,7 +5,8 @@ import Sections from "./components/Sections";
 
 
 export default function Home() {
-    useEffect((()=> localStorage.setItem("itensList",JSON.stringify([]))),[])
+    const itensSalvos= JSON.parse(localStorage.getItem("itensList"))
+    useEffect(()=> localStorage.setItem("itensList",JSON.stringify([...itensSalvos])),[])
 
     return(
         <>
