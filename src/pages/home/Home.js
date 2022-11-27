@@ -6,6 +6,7 @@ import Sections from "./components/Sections";
 
 export default function Home() {
     const itensSalvos= JSON.parse(localStorage.getItem("itensList"))
+    console.log(itensSalvos);
     useEffect(()=> localStorage.setItem("itensList",JSON.stringify([...itensSalvos])),[])
 
     return(
