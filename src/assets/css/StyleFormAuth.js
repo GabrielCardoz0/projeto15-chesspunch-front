@@ -7,6 +7,7 @@ export const StyleFormAuth = styled.form `
     justify-content: center;
     align-items: center;
     gap:10px;
+    width:100%;
     max-width:326px;
     margin: 0 auto;
 
