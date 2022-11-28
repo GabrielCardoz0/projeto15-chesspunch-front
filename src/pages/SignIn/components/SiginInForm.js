@@ -13,7 +13,7 @@ export default function SingInForm() {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const body ={
+        const body = {
             email,
             password
         }
@@ -22,6 +22,7 @@ export default function SingInForm() {
         try {
             const res = await axios.post(`${URL}/auth/sing-in`, body);
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("name", res.data.name);
             navigate("/");
         } catch (error) {
             alert("Senha e/ou usuário incorreto")
@@ -48,9 +49,11 @@ export default function SingInForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
-
-            <button type="onSubmit">Entrar</button>
-            <Link to="/">Voltar</Link>
+                <button type="onSubmit">Entrar</button>
+            <div>
+                <Link to="/sing-up">Cadastre-se aqui</Link>
+                <Link to="/">Voltar</Link>
+            </div>
         </StyleFormAuth>
     )
 }

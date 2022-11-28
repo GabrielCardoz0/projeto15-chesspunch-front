@@ -7,6 +7,7 @@ export const StyleFormAuth = styled.form `
     justify-content: center;
     align-items: center;
     gap:10px;
+    width:100%;
     max-width:326px;
     margin: 0 auto;
 
@@ -34,7 +35,13 @@ export const StyleFormAuth = styled.form `
         background: #9CE6AE;
         width:100%
     }
-
+    div{
+        display: flex;
+        flex-direction:row;
+        justify-content:space-between;
+        gap:10px;
+        width:100%
+    }
     a{
         box-sizing:border-box;
         padding: 15px;
@@ -45,7 +52,7 @@ export const StyleFormAuth = styled.form `
         font-size: 20px;
         background: #FFFFFF;
         color: #9CE6AE;
-        width:100%;
+        width:50%;
         text-align: center; 
         text-decoration: none;
     }
