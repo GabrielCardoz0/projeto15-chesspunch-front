@@ -22,6 +22,7 @@ export default function SingInForm() {
         try {
             const res = await axios.post(`${URL}/auth/sing-in`, body);
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("name", res.data.name);
             navigate("/");
         } catch (error) {
             alert("Senha e/ou usuário incorreto")

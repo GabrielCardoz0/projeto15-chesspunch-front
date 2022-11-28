@@ -3,16 +3,42 @@ import { DEFAULTCOLOR } from "../constants/colors";
 import cartImg from "../assets/images/shopping-cart-1768065.png"
 import chess from "../assets/images/chess.png"
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Header() {
-    return(
+    const [name, setName] = useState()
+
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('name');
+        setName(null)
+    }
+
+    useEffect(()=>{
+        if (localStorage?.getItem("name")){
+            setName(localStorage.getItem("name"))
+        }
+    },[])
+    return (
         <Logo>
-            <Link to="/"><img src={chess} alt=""/></Link>
+            <Link to="/"><img src={chess} alt="" /></Link>
 
-            <div>Ola, user</div>
+            {localStorage.getItem("token") ? (
+                <>
+                <h1> Olá, {name}</h1>
+                <Link to="/">
+                    <span onClick={logout}>logout</span>
+                </Link >
+                </>
+            ) : (
+                <Link to="/sing-in">
+                    <div>Login</div>
+                </Link>
+            )}
 
-            <Link to="/cart"> <img src={cartImg} alt=""/></Link>
-        </Logo>
+
+            <Link to="/cart"> <img src={cartImg} alt="" /></Link>
+        </Logo >
     )
 };
 
