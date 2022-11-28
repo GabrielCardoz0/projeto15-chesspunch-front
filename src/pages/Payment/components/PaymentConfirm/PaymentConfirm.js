@@ -2,8 +2,11 @@ import { DEFAULTCOLOR } from "../../../../constants/colors";
 import styled from "styled-components"
 import axios from "axios";
 import { URL } from "../../../../constants/URLS";
+import { useNavigate } from "react-router-dom";
 
 export default function PaymentConfirm(params){
+
+    const navigate = useNavigate()
 
     const {popUpOn,compraFeita,setPopUpOn} = params;
 
@@ -33,7 +36,13 @@ export default function PaymentConfirm(params){
                 total:totalValue
             }
 
-            axios.post(URL+"/confirm/order", objetoCompra, config).then(res => alert("compra efetuada.")).catch(err => alert("Erro. Compra não efetuada"))
+            axios.post(URL+"/confirm/order", objetoCompra, config)
+            .then(res => {
+                alert("compra efetuada."+res.data)
+                setPopUpOn(false)
+                navigate("/")
+            })
+            .catch(err => alert("Erro. Compra não efetuada."))
 
 
         } catch (err){

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { StyleFormAuth } from "../../../../assets/css/StyleFormAuth";
 
 export default function PaymentForm(params) {
@@ -17,10 +17,10 @@ export default function PaymentForm(params) {
     const [validate, setValidate] = useState("")
 
 
-    const confirmation = (num!=="" || securytCode !== "") && (adress!=="" && city !=="" && estado !=="")
+    const confirmation = (num!=="" || (securytCode !== "" && numCreditCard.length!=="" && validate.length!=="") ) && (adress!=="" && city !=="" && estado !=="")
 
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     function methodPayment(e) {
         e.preventDefault()
@@ -41,7 +41,6 @@ export default function PaymentForm(params) {
                 city,
                 estado
             }
-            console.log(object)
             setCompraFeita(object)
         }
     
@@ -71,7 +70,7 @@ export default function PaymentForm(params) {
                 /> Cartão de Crédito
 
             </div>
-            <StyleFormAuth onChange={handleSubmit}>
+            <StyleFormAuth onSubmit={handleSubmit}>
                 <br></br>
                 <h1><strong> Informações de Pagamento</strong></h1>
 
