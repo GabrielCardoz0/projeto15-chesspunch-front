@@ -51,7 +51,7 @@ export default function SingInForm() {
             />
                 <button type="onSubmit">Entrar</button>
             <div>
-                <Link to="sing-up">Cadastre-se aqui</Link>
+                <Link to="/sing-up">Cadastre-se aqui</Link>
                 <Link to="/">Voltar</Link>
             </div>
         </StyleFormAuth>

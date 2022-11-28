@@ -4,6 +4,7 @@ import Cart from "./pages/cart/Cart.js";
 import Home from "./pages/home/Home";
 import Products from "./pages/products/Products";
 import SingIn from "./pages/SignIn/SingIn";
+import SingUp from "./pages/SignUp/SingUp";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/product/:productId" element={<Products/>}/>
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/sing-in" element={<SingIn/>} />
+          <Route path="/sing-up" element={<SingUp />} />
         </Routes>
       </BrowserRouter>
     </>
