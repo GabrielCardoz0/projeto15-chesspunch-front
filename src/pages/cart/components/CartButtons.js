@@ -15,7 +15,7 @@ export default function CartButtons(params) {
     return(
         <Buttons>
             <div>Total: R${total.toFixed(2).replace(".",",")}</div>
-            <button className="done">Finalizar</button>
+            <Link to="/payment"><button className="done">Finalizar</button></Link>
             <Link to="/"><button className="backHome">Voltar a loja</button></Link>
         </Buttons>
     )

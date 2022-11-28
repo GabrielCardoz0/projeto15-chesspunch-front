@@ -36,7 +36,7 @@ export default function ProductsButtons(params) {
             </div>
 
             <button className="addCart" onClick={()=> addCart("/")}>adicionar ao carrinho</button>
-            <button className="buy" onClick={()=> addCart("/cart")}>Comprar</button>
+            <button className="buy" onClick={()=> addCart("/payment")}>Comprar</button>
             <button className="cancel" onClick={() => navigate("/") }>Voltar</button>
         </ProductButtons>
     )

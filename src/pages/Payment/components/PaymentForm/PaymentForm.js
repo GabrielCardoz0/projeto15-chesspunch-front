@@ -1,8 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { StyleFormAuth } from "../../../../assets/css/StyleFormAuth";
 
-export default function PaymentForm() {
+export default function PaymentForm(params) {
+
+    const {setPopUpOn,setCompraFeita} = params
+    
 
     const [method, setMethod] = useState("")
     const [num, setNum] = useState("")
@@ -13,10 +16,14 @@ export default function PaymentForm() {
     const [securytCode, setSecurytCode] = useState("")
     const [validate, setValidate] = useState("")
 
+
+    const confirmation = (num!=="" || securytCode !== "") && (adress!=="" && city !=="" && estado !=="")
+
+
     const navigate = useNavigate()
 
     function methodPayment(e) {
-        // e.preventDefault()
+        e.preventDefault()
         const methodSelectd = e.target.value
         setMethod(methodSelectd)
         if (methodSelectd === "boleto" || methodSelectd === "pix") {
@@ -34,7 +41,8 @@ export default function PaymentForm() {
                 city,
                 estado
             }
-            console.log()
+            console.log(object)
+            setCompraFeita(object)
         }
     
 
@@ -142,7 +150,7 @@ export default function PaymentForm() {
 
                 />
 
-                <button type="onSubmit">Enviar</button>
+                <button onClick={()=> confirmation? setPopUpOn(true):alert("dados incompletos.")}>Enviar</button>
                 <div>
                     <Link to="/">Cancelar</Link>
                 </div>
